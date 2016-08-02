@@ -27,6 +27,27 @@ $(document).ready(function() {
     $('body').append(dancer.$node);
     window.dancers.push(dancer);
   });
+  $('#lineUpButton').on('click', function() {
+    if ($(this).hasClass('lineUp')) {
+      window.dancers.forEach(dancer => {
+        dancer.lineUp();
+      });
+      $(this).text('back to dancing');
+      $(this).removeClass('lineUp');
+    } else {
+      window.dancers.forEach(dancer => {
+        dancer.unline();
+        dancer.step();
+      });
+      $(this).text('line up');
+      $(this).addClass('lineUp');
+    }
+  });
+  $('.backToWork').on('click', function() {
+    console.log('pass');
+    
+    $(this).removeClass('backToWork');
+  });
   $('.removeAllButton').on('click', function() {
     $('.dancer-element').remove();
     window.dancers = [];

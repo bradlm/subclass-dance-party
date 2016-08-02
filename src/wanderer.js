@@ -2,12 +2,7 @@ var Wanderer = class Wanderer extends BlinkyDancer {
   constructor(top, left, timeBetweenSteps, classType) {
     super(top, left, timeBetweenSteps, classType || 'Wanderer');
   }
-  step() {
-    // call the old version of step at the beginning of any call to this new version of step
-    this.timeStep();
-    // toggle() is a jQuery method to show/hide the <span> tag.
-    // See http://api.jquery.com/category/effects/ for this and
-    // other effects you can use on a jQuery-wrapped html tag
+  action() {
     var height = rng($(window).height() / 2);
     var spaceHeight = rng($(window).height()) - height / 2;
     var spaceWidth = rng($(window).width()) - height / 2;
@@ -23,5 +18,3 @@ var Wanderer = class Wanderer extends BlinkyDancer {
     });
   }
 };
-
-//https://v.theverse.space/9jlw180huwhxs/source.gif

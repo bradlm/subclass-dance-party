@@ -1,6 +1,6 @@
 var BlinkyDancer = class BlinkyDancer extends Dancer {
-  constructor(top, left, timeBetweenSteps, classType) {
-    super(top, left, timeBetweenSteps, classType || 'BlinkyDancer');
+  constructor(top, left, timeBetweenSteps, classType, node) {
+    super(top, left, timeBetweenSteps, classType || 'BlinkyDancer', node);
   }
   timeStep() {
     super.step();
@@ -11,6 +11,11 @@ var BlinkyDancer = class BlinkyDancer extends Dancer {
     // toggle() is a jQuery method to show/hide the <span> tag.
     // See http://api.jquery.com/category/effects/ for this and
     // other effects you can use on a jQuery-wrapped html tag.
+    if (this.keepSteppin) {
+      this.action();
+    }
+  }
+  action() {
     this.$node.toggle();
   }
 };
