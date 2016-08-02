@@ -1,7 +1,8 @@
+var rng = x => Math.floor(x * Math.random()); 
+var hexArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
 $(document).ready(function() {
   window.dancers = [];
-
-  $('.addDancerButton').on('click', function(event) {
+  $('.addDancerButton').on('click', function() {
     /* This function sets up the click handlers for the create-dancer
      buttons on dancefloor.html. You should only need to make one small change to it.
      * As long as the "data-dancer-maker-function-name" attribute of a class="addDancerButton" DOM node matches one of the names of the
@@ -15,18 +16,20 @@ $(document).ready(function() {
      to the stage.
      */
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
-
     // make a dancer with a random position
-
     var dancer = new dancerMakerFunction(
-      $('body').height() * Math.random(),
-      $('body').width() * Math.random(),
-      Math.random() * 1000
+      rng($('body').height()),
+      rng($('body').width()),
+      rng(1000)
     );
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
+  });
+  $('.removeAllButton').on('click', function() {
+    $('.dancer-element').remove();
+    window.dancers = [];
   });
 });
 

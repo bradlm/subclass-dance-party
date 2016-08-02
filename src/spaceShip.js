@@ -1,9 +1,6 @@
-var BlinkyDancer = class BlinkyDancer extends Dancer {
+var SpaceShip = class SpaceShip extends BlinkyDancer {
   constructor(top, left, timeBetweenSteps, classType) {
-    super(top, left, timeBetweenSteps, classType || 'BlinkyDancer');
-  }
-  timeStep() {
-    super.step();
+    super(top, left, timeBetweenSteps, classType || 'SpaceShip');
   }
   step() {
     // call the old version of step at the beginning of any call to this new version of step
