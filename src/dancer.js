@@ -6,16 +6,14 @@ var Dancer = class Dancer {
     this.$node = node || $('<span class="dancer-element ' + (classType || 'Dancer') + '"></span>'),
     this.top = top,
     this.left = left,
-    this.keepSteppin = true, 
+    this.lineUp = false,
     this.timeBetweenSteps = timeBetweenSteps;
     this.setPosition(top, left);
     this.step();
   }
   step() {
     // the basic dancer doesn't do anything interesting at all on each step,
-    if (this.keepSteppin) {
-      setTimeout(this.step.bind(this), this.timeBetweenSteps);
-    }
+    setTimeout(this.step.bind(this), this.timeBetweenSteps);
   }
   setPosition(top, left) {
     // Use css top and left properties to position our <span> tag
@@ -26,12 +24,6 @@ var Dancer = class Dancer {
       left: left
     }; 
     this.$node.css(styleSettings);
-  }
-  lineUp() {
-    this.keepSteppin = false;
-  }
-  unline() {
-    this.keepSteppin = true;
   }
 };
 // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote

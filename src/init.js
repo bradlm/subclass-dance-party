@@ -30,27 +30,26 @@ $(document).ready(function() {
   $('#lineUpButton').on('click', function() {
     if ($(this).hasClass('lineUp')) {
       window.dancers.forEach(dancer => {
-        dancer.lineUp();
+        dancer.lineUp = true;
       });
       $(this).text('back to dancing');
       $(this).removeClass('lineUp');
     } else {
       window.dancers.forEach(dancer => {
-        dancer.unline();
-        dancer.step();
+        dancer.lineUp = false;
       });
       $(this).text('line up');
       $(this).addClass('lineUp');
     }
   });
-  $('.backToWork').on('click', function() {
-    console.log('pass');
-    
-    $(this).removeClass('backToWork');
-  });
   $('.removeAllButton').on('click', function() {
     $('.dancer-element').remove();
     window.dancers = [];
   });
+
+  $(document.body).on('mouseover', '.dancer-element', function() {
+    //create explosion on mouseover.
+  });
 });
 
+//needs pythagorean stuff.

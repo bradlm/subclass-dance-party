@@ -33,16 +33,27 @@ var spaceShipArray = [
 var SpaceShip = class SpaceShip extends BlinkyDancer {
   constructor(top, left, timeBetweenSteps, classType, node) {
     node = $('<img src="' + spaceShipArray[rng(spaceShipArray.length)] + '" class="dancer-element ' + (classType || 'SpaceShip') + '">');
-    super(top, left, timeBetweenSteps, classType, node);
+    timeBetweenSteps = timeBetweenSteps > 2000 ? timeBetweenSteps : 2000; 
+    super(top, 0, timeBetweenSteps, classType, node);
   }
   action() {
-    var spaceHeight = rng($(window).height()) - this.$node.height() / 2;
-    var spaceWidth = rng($(window).width()) - this.$node.width() / 2;
-    //var width = (spaceWidth / 2);
-    this.$node.animate({
-      top: '' + spaceHeight,
-      left: '' + spaceWidth
-    });
+    var windowWidth = this.lineUp ? 0 : $(window).width();
+    var rightLimit = windowWidth * 0.9;
+    var leftLimit = windowWidth * 0;
+    if (this.$node.offset().left <= windowWidth / 2) {
+      this.$node.removeClass('flipped');
+      this.$node.animate({
+        left: '' + rightLimit
+      }, this.timeBetweenSteps);
+    } else {
+      this.$node.addClass('flipped');
+      this.$node.animate({
+        left: '' + leftLimit
+      }, this.timeBetweenSteps);
+    }
+    if (this.lineUp) {
+      this.$node.removeClass('flipped');
+    }
   }
 };
 

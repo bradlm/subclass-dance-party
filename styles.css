@@ -42,6 +42,9 @@ body, a:link, a:visited, a:active{
   height:auto;
   width:auto;
 }
+.flipped{
+  transform: scale(-1,1);
+}
 #videoDiv{
   position: absolute;
   margin: auto;
